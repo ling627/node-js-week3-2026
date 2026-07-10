@@ -18,7 +18,7 @@ const members = [...initialMembers];
 /* 作答區
 let nextId = ...;
 */
-let nextId = Math.max(...members.map(item => item.id));
+let nextId = Math.max(...members.map(item => item.id)) + 1;
 
 // 3. 兩個內部 helper 函式
 
@@ -42,8 +42,7 @@ function filterByQuery(list, query) {
 function validateBody(body) { ... }
 */
 function validateBody(body) {
-  const isValid = body && typeof body === 'object' && body.name != undefined && body.level != undefined;
-  if (isValid) {
+  if (!body || typeof body !== 'object' || !body.name || !body.level) {
     return { 'valid': true };
   } else {
     return { 'valid': false, 'error': '缺 name 或 level' }
